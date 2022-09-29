@@ -1,0 +1,12 @@
+.no-posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.no-posts p {
+  font-size: 1.4em;
+  font-style: italic;
+}

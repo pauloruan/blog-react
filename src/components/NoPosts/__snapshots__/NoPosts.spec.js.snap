@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NoPosts /> should match snapshot 1`] = `
+<div
+  class="no-posts"
+>
+  <p>
+    Não existem posts.
+  </p>
+</div>
+`;
