@@ -1,0 +1,13 @@
+.btn-more-posts {
+  width: 100%;
+  background-color: darkblue;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.btn-more-posts:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
