@@ -50,6 +50,13 @@ const handlers = [
           body: 'body6',
           url: 'img6.jpg',
         },
+        {
+          userId: 7,
+          id: 7,
+          title: 'title7',
+          body: 'body7',
+          url: 'img7.jpg',
+        },
       ]),
     );
   }),
@@ -58,24 +65,18 @@ const handlers = [
 const server = setupServer(...handlers);
 
 describe('<Home />', () => {
-  beforeAll(() => {
-    server.listen();
-  });
+  beforeAll(() => server.listen());
 
   afterEach(() => server.resetHandlers());
 
-  afterAll(() => {
-    server.close();
-  });
+  afterAll(() => server.close());
 
   it('should render search, posts and load more', async () => {
-    const { debug } = render(<Home />);
+    render(<Home />);
     const noMorePosts = screen.getByText(/Não existem posts./i);
 
     expect.assertions(3);
     await waitForElementToBeRemoved(noMorePosts);
-
-    debug();
 
     const search = screen.getByPlaceholderText(/type your search/i);
     expect(search).toBeInTheDocument();
@@ -122,5 +123,18 @@ describe('<Home />', () => {
     userEvent.type(search, 'post does not exist');
 
     expect(screen.getByText(/Não existem posts./i)).toBeInTheDocument();
+  });
+
+  it('should load more posts', async () => {
+    render(<Home />);
+    const noMorePosts = screen.getByText(/Não existem posts./i);
+
+    await waitForElementToBeRemoved(noMorePosts);
+
+    const button = screen.getByRole('button', { name: /load more posts/i });
+
+    userEvent.click(button);
+    expect(screen.getByRole('heading', { name: 'title7' })).toBeInTheDocument();
+    expect(button).toBeDisabled();
   });
 });
