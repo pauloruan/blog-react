@@ -17,3 +17,17 @@
 .post-content {
   padding: 30px;
 }
+
+.post-title {
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-body {
+  margin-top: 0.5rem;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.4;
+}
